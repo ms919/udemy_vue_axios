@@ -1,28 +1,30 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+	<div id="app">
+		<h3></h3>
+		<label for="name">ユーザー名</label>
+		<input id="name" type="text" v-model="name" />
+		<br /><br />
+		<label for="comment">コメント</label>
+		<textarea id="comment" v-model="comment" cols="30" rows="10"></textarea>
+		<h2>掲示板</h2>
+	</div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+	data() {
+		return {
+			name: "",
+			comment: "",
+		};
+	},
+};
 </script>
 
-<style>
+<style scoped>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+	text-align: center;
+	color: black;
+	margin-top: 60px;
 }
 </style>
