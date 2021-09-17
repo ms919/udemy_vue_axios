@@ -10,9 +10,9 @@
 		<button @click="createComment">データ送信</button>
 		<h2>掲示板</h2>
 		<div v-for="post in posts" :key="post.name">
-			<p>名前：{{ post.fields.name.stringValue}}</p>
-			<p>コメント：{{ post.fields.comment.stringValue}}</p>
-			<br>
+			<p>名前：{{ post.fields.name.stringValue }}</p>
+			<p>コメント：{{ post.fields.comment.stringValue }}</p>
+			<br />
 		</div>
 	</div>
 </template>
@@ -25,20 +25,27 @@ export default {
 		return {
 			name: "",
 			comment: "",
-			posts: []
+			posts: [],
 		};
+	},
+	computed: {
+		idToken() {
+			return this.$store.getters.idToken;
+		},
 	},
 	created() {
 		axios
-			.get(
-				"/comments"
-			)
+			.get("/comments", {
+				headers: {
+					Authorization: "Bearer " + this.idToken,
+				},
+			})
 			.then((response) => {
 				console.log(response);
 				this.posts = response.data.documents;
 			})
 			.catch((error) => {
-				console.lgo(error);
+				console.log(error);
 			});
 	},
 	methods: {
@@ -56,6 +63,11 @@ export default {
 								stringValue: this.comment,
 							},
 						},
+					},
+					{
+						headers: {
+							Authorization: "Bearer " + this.idToken,
+						},
 					}
 					// 成功時
 				)
@@ -72,4 +84,3 @@ export default {
 	},
 };
 </script>
-

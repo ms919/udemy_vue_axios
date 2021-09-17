@@ -12,8 +12,6 @@
 </template>
 
 <script>
-import axios from "../axios-auth";
-
 export default {
 	data() {
 		return {
@@ -23,20 +21,12 @@ export default {
 	},
 	methods: {
 		register() {
-			axios
-				.post("/accounts:signUp?key=AIzaSyAnn8Uciz1-w_Uyc2xl9d5gAX6zLp9GheQ", {
-					email: this.email,
-					password: this.password,
-					returnSecureToken: true,
-				})
-				.then((response) => {
-					console.log(response);
-          this.email = "";
-          this.password = "";
-				}).catch((error) => {
-          console.log(error);
-          confirm(error);
-        });
+			this.$store.dispatch("register", {
+				email: this.email,
+				password: this.password,
+			});
+			this.email = "";
+			this.password = "";
 		},
 	},
 };
