@@ -1,24 +1,16 @@
 <template>
 	<div id="app">
-		<h3></h3>
-		<label for="name">ユーザー名</label>
-		<input id="name" type="text" v-model="name" />
-		<br /><br />
-		<label for="comment">コメント</label>
-		<textarea id="comment" v-model="comment" cols="30" rows="10"></textarea>
-		<h2>掲示板</h2>
+		<header>
+			<router-link to="/" class="header-item">掲示板</router-link>
+			<router-link to="/login" class="header-item">Login</router-link>
+			<router-link to="/register" class="header-item">SignUp</router-link>
+		</header>
+		<router-view></router-view>
 	</div>
 </template>
 
 <script>
-export default {
-	data() {
-		return {
-			name: "",
-			comment: "",
-		};
-	},
-};
+
 </script>
 
 <style scoped>
@@ -26,5 +18,8 @@ export default {
 	text-align: center;
 	color: black;
 	margin-top: 60px;
+}
+.header-item {
+	padding: 10px;
 }
 </style>
